@@ -1,0 +1,179 @@
+/* Estilos generales del cuerpo de la página */
+body {
+    font-family: Arial, sans-serif; /* Tipo de letra */
+    margin: 0; /* Sin márgenes alrededor */
+    padding: 0; /* Sin relleno alrededor */
+    background-color: #f4f4f4; /* Un gris claro de fondo */
+    color: #333; /* Color de texto principal */
+}
+
+/* Estilos para la barra superior (encabezado) */
+header {
+    background-color: #333; /* Fondo gris oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 1rem 0; /* Relleno arriba y abajo */
+    text-align: center; /* Texto centrado */
+}
+
+/* Estilos para los botones de navegación (Insumos, Artículos, Reportes) */
+nav button {
+    background-color: #5cb85c; /* Verde */
+    color: white; /* Texto blanco */
+    padding: 10px 15px; /* Relleno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar por encima */
+    font-size: 16px;
+    margin: 0 5px; /* Margen entre botones */
+}
+
+nav button:hover {
+    background-color: #4cae4c; /* Verde más oscuro al pasar el mouse */
+}
+
+/* Estilos para el contenido principal */
+main {
+    padding: 20px;
+    max-width: 900px; /* Ancho máximo para que no se extienda demasiado */
+    margin: 20px auto; /* Centra el contenido en la página */
+    background-color: #fff; /* Fondo blanco para el contenido */
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+}
+
+/* Estilos para cada sección (Insumos, Artículos, Reportes) */
+section {
+    margin-bottom: 20px;
+    border: 1px solid #ddd; /* Borde gris claro */
+    padding: 15px; /* Relleno dentro de la sección */
+    border-radius: 8px;
+}
+
+/* Clase para ocultar secciones (JavaScript la usará) */
+section.hidden {
+    display: none; /* No se muestra en absoluto */
+}
+
+/* Clase para mostrar la sección activa (JavaScript la usará) */
+section.active {
+    display: block; /* Se muestra como un bloque */
+}
+
+/* Estilos para las tablas */
+table {
+    width: 100%; /* Ocupa todo el ancho de su contenedor */
+    border-collapse: collapse; /* Bordes de las celdas se unen */
+    margin-top: 15px;
+}
+
+table, th, td {
+    border: 1px solid #ddd; /* Bordes de las celdas */
+}
+
+th, td {
+    padding: 10px; /* Relleno dentro de cada celda */
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+th {
+    background-color: #f2f2f2; /* Fondo gris claro para los encabezados de la tabla */
+}
+
+/* Estilos para los botones generales (Agregar, Editar, Eliminar, Producir) */
+button {
+    background-color: #007bff; /* Azul */
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px; /* Espacio entre botones */
+}
+
+button:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+}
+
+/* Estilos específicos para el botón "Eliminar" */
+button.delete {
+    background-color: #dc3545; /* Rojo */
+}
+
+button.delete:hover {
+    background-color: #c82333; /* Rojo más oscuro */
+}
+
+/* Estilos específicos para el botón "Editar" */
+button.edit {
+    background-color: #ffc107; /* Amarillo */
+    color: #333; /* Texto oscuro para contraste */
+}
+
+button.edit:hover {
+    background-color: #e0a800; /* Amarillo más oscuro */
+}
+
+/* Estilos específicos para el botón "Producir" */
+button.produce {
+    background-color: #28a745; /* Verde de éxito */
+}
+
+button.produce:hover {
+    background-color: #218838; /* Verde más oscuro */
+}
+
+/* Estilos para las Ventanas Emergentes (Modals) */
+.modal {
+    display: none; /* Oculto por defecto. JavaScript lo mostrará/ocultará. */
+    position: fixed; /* Se queda fijo en la pantalla, no se mueve con el scroll */
+    z-index: 1; /* Asegura que esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ocupa todo el ancho */
+    height: 100%; /* Ocupa toda la altura */
+    overflow: auto; /* Permite scroll si el contenido es muy grande */
+    background-color: rgba(0,0,0,0.4); /* Un fondo oscuro semi-transparente para la capa de atrás */
+}
+
+.modal-content {
+    background-color: #fefefe; /* Fondo blanco del contenido del modal */
+    margin: 15% auto; /* 15% desde arriba, y centrado horizontalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del modal */
+    max-width: 500px; /* Ancho máximo para que no sea demasiado grande */
+    border-radius: 8px;
+    position: relative;
+}
+
+/* Botón de cerrar (la 'x') dentro del modal */
+.close-button {
+    color: #aaa;
+    float: right; /* Lo alinea a la derecha */
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para los formularios dentro de los modals */
+form label {
+    display: block; /* Cada etiqueta en su propia línea */
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="number"] {
+    width: calc(100% - 20px); /* Ocupa casi todo el ancho, dejando espacio para el padding */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}

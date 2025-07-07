@@ -1,0 +1,23 @@
+# Ignorar entornos virtuales
+venv/
+.venv/
+
+# Ignorar archivos de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python/
+
+# Ignorar archivos de entorno (secretos de la BD, etc.)
+.env
+
+# Ignorar cachés de IDEs (ej. VS Code)
+.vscode/
+
+# Ignorar archivos temporales o de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar la carpeta donde flask almacena archivos de sesión si usas session (aunque en este proyecto no se use, lo dejo como una buena práctica)
+instance/
