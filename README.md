@@ -46,9 +46,10 @@ Asegúrate de tener instalado:
 ### 2. Clonar el Repositorio
 
 Abre tu terminal y ejecuta:
+(Importante: Reemplaza https://github.com/tu_usuario/tu_repositorio.git con la URL de tu repositorio GitHub real, y tu_repositorio con el nombre de tu repositorio.)
 
 ```bash
 git clone [https://github.com/tu_usuario/tu_repositorio.git](https://github.com/tu_usuario/tu_repositorio.git)
 cd tu_repositorio
 
-(Importante: Reemplaza https://github.com/tu_usuario/tu_repositorio.git con la URL de tu repositorio GitHub real, y tu_repositorio con el nombre de tu repositorio.)
+
