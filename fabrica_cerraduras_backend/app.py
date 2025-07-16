@@ -303,7 +303,6 @@ def get_articulos():
 
 
 # Endpoint para llamar al Stored Procedure sp_produccion_articulos
-# Este endpoint es crucial para la lógica de negocio de la fábrica.
 @app.route("/api/articulos/producir", methods=["POST"])
 def producir_articulo():
     data = request.json  # Esperamos un JSON con 'idArticulo' y 'cantidadProducir'
@@ -325,12 +324,11 @@ def producir_articulo():
     cursor = conn.cursor()
     try:
         # Llama al stored procedure sp_produccion_articulos
-        # El SP es el que manejará la lógica de descontar insumos y verificar stock.
         cursor.callproc("sp_produccion_articulos", (id_articulo, cantidad_producir))
         conn.commit()  # Confirma los cambios realizados por el SP
 
         # Opcional: Recuperar el nuevo stock del artículo para devolverlo en la respuesta
-        # Esto te da una confirmación visual de que la producción afectó el stock.
+        # Esto da una confirmación visual de que la producción afectó el stock.
         cursor.execute(
             "SELECT cantidadDisponible FROM stock_articulos WHERE idArticulo = %s",
             (id_articulo,),
@@ -349,10 +347,13 @@ def producir_articulo():
         print(
             f"Error MySQL en sp_produccion_articulos: {err}"
         )  # Para depuración en la terminal
-        # Devolvemos el error específico del SP al frontend.
+        # Aquí es donde capturamos el mensaje de error del SP y lo enviamos al frontend.
+        # El objeto 'err' de mysql.connector contiene el mensaje de SIGNAL SQLSTATE.
         return (
             jsonify(
-                {"error": f"Error en procedimiento almacenado de producción: {err}"}
+                {
+                    "error": str(err)
+                }  # Convertimos el objeto de error a string para obtener el mensaje.
             ),
             500,
         )
