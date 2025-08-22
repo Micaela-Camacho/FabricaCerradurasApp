@@ -3,22 +3,17 @@ from flask import Flask, jsonify, request  # Importamos lo necesario de Flask
 from flask_cors import CORS  # Para permitir comunicación con el frontend
 from database import (
     get_db_connection,
-)  # Importamos nuestra función para conectar a la BD
+)  # función para conectar a la BD
 
-# Crea una instancia de la aplicación Flask
+# instancia de la aplicación Flask
 app = Flask(__name__)
 
-# Configura CORS (Cross-Origin Resource Sharing)
-# Esto es crucial para que tu frontend (que probablemente se ejecutará en un puerto diferente, ej. 3000)
-# pueda hacer peticiones a tu backend (ej. puerto 5000).
-# En desarrollo, permitimos todas las conexiones.
-# En producción, esto debería ser más restrictivo (ej. CORS(app, origins="http://tu-dominio-frontend.com"))
 CORS(app)
 
 # --- RUTAS (ENDPOINTS) ---
 
 
-# Ruta de ejemplo para probar que el servidor funciona
+# Ruta
 @app.route("/", methods=["GET"])
 def home():
     return "¡Bienvenido a la API de Fabrica de Cerraduras!"
@@ -30,19 +25,18 @@ def home():
 # Endpoint para OBTENER TODOS los insumos
 @app.route("/api/insumos", methods=["GET"])
 def get_insumos():
-    conn = get_db_connection()  # Obtenemos una conexión a la BD
+    conn = get_db_connection()  # conexión a la BD
     if conn is None:  # Si la conexión falló
         return jsonify({"error": "No se pudo conectar a la base de datos"}), 500
 
-    # Creamos un cursor. dictionary=True nos permite obtener los resultados como diccionarios,
-    # lo que es más fácil de manejar en Python y convertir a JSON.
-    cursor = conn.cursor(dictionary=True)
+    # cursor. 
+    cursor = conn.cursor(dictionary=True) # dictionary=True obtiene los resultados como diccionarios
     try:
-        cursor.execute("SELECT * FROM insumos")  # Ejecutamos la consulta SQL
-        insumos = cursor.fetchall()  # Obtenemos todos los resultados
-        return jsonify(insumos)  # Devolvemos los insumos como JSON
+        cursor.execute("SELECT * FROM insumos")  # Ejecuta la consulta SQL
+        insumos = cursor.fetchall()  # Obtiene todos los resultados
+        return jsonify(insumos)  # Devuelve los insumos como JSON
     except Exception as e:
-        # Si ocurre algún error en la consulta, lo capturamos y devolvemos un mensaje de error 500
+        # Si ocurre algún error en la consulta, devuelve un mensaje de error 500
         print(f"Error al obtener insumos: {e}")
         return jsonify({"error": "Error interno del servidor al obtener insumos"}), 500
     finally:
@@ -63,13 +57,13 @@ def get_insumo(id_insumo):
         dictionary=True
     )  # dictionary=True para resultados como diccionarios
     try:
-        # Usamos %s como placeholder para evitar inyección SQL.
+        #  %s como placeholder para evitar inyección SQL.
         # Los valores se pasan como una tupla en el segundo argumento de execute().
         cursor.execute("SELECT * FROM insumos WHERE idInsumo = %s", (id_insumo,))
         insumo = cursor.fetchone()  # fetchone() para obtener un solo resultado
         if insumo:
             return jsonify(insumo)
-        # Si no se encuentra el insumo, devolvemos un 404 Not Found
+        # Si no se encuentra el insumo, devuelve un 404 Not Found
         return jsonify({"message": "Insumo no encontrado"}), 404
     except Exception as e:
         print(f"Error al obtener insumo por ID: {e}")
