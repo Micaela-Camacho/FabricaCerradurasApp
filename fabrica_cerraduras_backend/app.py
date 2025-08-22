@@ -93,7 +93,7 @@ def add_insumo():
     conn = get_db_connection()
     if conn is None:
         return jsonify({"error": "No se pudo conectar a la base de datos"}), 500
-    cursor = conn.cursor()  # No necesitamos dictionary=True para INSERT
+    cursor = conn.cursor()  # No necesita dictionary=True para INSERT
 
     try:
         cursor.execute(
@@ -130,7 +130,7 @@ def update_insumo(id_insumo):
     cursor = conn.cursor()
 
     try:
-        # Construimos la consulta UPDATE dinámicamente según los datos recibidos
+        # crea la consulta UPDATE dinámicamente según los datos recibidos
         query_parts = []
         params = []
 
@@ -147,9 +147,9 @@ def update_insumo(id_insumo):
             return jsonify({"error": "No se proporcionaron datos para actualizar"}), 400
 
         query = "UPDATE insumos SET " + ", ".join(query_parts) + " WHERE idInsumo = %s"
-        params.append(id_insumo)  # Añadimos el ID al final de los parámetros
+        params.append(id_insumo)  # añade el ID al final de los parámetros
 
-        cursor.execute(query, tuple(params))  # Ejecutamos la consulta
+        cursor.execute(query, tuple(params))  # Ejecuta la consulta
         conn.commit()
 
         if cursor.rowcount == 0:  # rowcount indica cuántas filas fueron afectadas
