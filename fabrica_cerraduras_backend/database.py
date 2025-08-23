@@ -27,8 +27,8 @@ def get_db_connection():
         return None  # Y devolvemos None para indicar que falló
 
 
-# Este bloque solo se ejecuta si corres 'database.py' directamente
-# Es útil para probar si tu conexión a la BD funciona antes de ejecutar toda la app Flask.
+# Este bloque solo se ejecuta si se corre 'database.py' directamente
+# Es útil para probar si la conexión a la BD funciona antes de ejecutar toda la app Flask.
 if __name__ == "__main__":
     print("Probando conexión a la base de datos...")
     connection = get_db_connection()
