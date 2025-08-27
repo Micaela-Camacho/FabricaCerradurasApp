@@ -1,17 +1,17 @@
-// La dirección (URL) de tu backend Flask. ¡Asegúrate de que coincida con donde se está ejecutando Flask!
-// Por defecto, Flask corre en el puerto 5000 en tu propia computadora (localhost).
+// La dirección (URL) del backend Flask. 
+// Por defecto, Flask corre en el puerto 5000 (localhost).
 const API_URL = 'http://127.0.0.1:5000/api';
 
-// --- Funciones para manejar la Interfaz (lo que el usuario ve) ---
+// --- Funciones para manejar la Interfaz ---
 
 // Esta función es para cambiar qué sección de la página se muestra (Insumos, Artículos, Reportes).
 function showSection(sectionId) {
-    // Primero, ocultamos todas las secciones posibles
+    // Primero, oculta todas las secciones posibles
     document.querySelectorAll('main section').forEach(section => {
         section.classList.add('hidden'); // Le añade la clase 'hidden' (definida en style.css para ocultar)
         section.classList.remove('active'); // Quita la clase 'active'
     });
-    // Luego, mostramos solo la sección que nos interesa
+    // Luego, mostrar solo la sección de interes
     document.getElementById(sectionId).classList.remove('hidden'); // Le quita 'hidden'
     document.getElementById(sectionId).classList.add('active'); // Le añade 'active' (para mostrar)
 
@@ -31,11 +31,11 @@ function openModal(modalId, itemData = null) {
 
     // Si es el modal de editar insumo, necesitamos cargar los datos del insumo específico
     if (modalId === 'editInsumoModal' && itemData !== null) {
-        loadInsumoForEdit(itemData); // itemData aquí es el ID del insumo
+        loadInsumoForEdit(itemData); // itemData aca es el ID del insumo
     }
-    // Si es el modal de producir artículo, cargamos el nombre y ID del artículo
+    // Si es el modal de producir artículo, cargamos el nombre y el ID del artículo
     if (modalId === 'producirArticuloModal' && itemData !== null) {
-        loadArticuloForProduce(itemData); // itemData aquí es un objeto { id, nombre } del artículo
+        loadArticuloForProduce(itemData); // itemData aca es un objeto { id, nombre } del artículo
     }
 }
 
@@ -51,15 +51,15 @@ window.onclick = function(event) {
     }
 };
 
-// --- Funciones para la Gestión de INSUMOS (aquí el frontend "habla" con tu backend) ---
+// --- Funciones para la Gestión de INSUMOS (aca el frontend "habla" con el backend) ---
 
-// Esta función pide la lista de todos los insumos a tu backend y los muestra en la tabla
+// Esta función pide la lista de todos los insumos al backend y los muestra en la tabla
 async function loadInsumos() {
     const insumosTableBody = document.getElementById('insumos-table-body');
     insumosTableBody.innerHTML = '<tr><td colspan="4">Cargando insumos...</td></tr>'; // Mensaje mientras carga
 
     try {
-        // Hacemos una petición GET a tu endpoint de Flask: http://127.0.0.1:5000/api/insumos
+        // Hacemos una petición GET al endpoint de Flask: http://127.0.0.1:5000/api/insumos
         const response = await fetch(`${API_URL}/insumos`);
         // Si la respuesta del servidor no fue "OK" (ej. 404, 500), lanzamos un error
         if (!response.ok) {
@@ -116,7 +116,7 @@ document.getElementById('add-insumo-form').addEventListener('submit', async (eve
     }
 
     try {
-        // Hacemos una petición POST a tu endpoint: http://127.0.0.1:5000/api/insumos
+        // Hacemos una petición POST al endpoint: http://127.0.0.1:5000/api/insumos
         const response = await fetch(`${API_URL}/insumos`, {
             method: 'POST', // Es una petición POST
             headers: {
