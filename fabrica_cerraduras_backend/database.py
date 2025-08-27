@@ -2,7 +2,7 @@ import mysql.connector  # Importamos el conector para MySQL
 import os  # Para interactuar con variables de entorno
 from dotenv import load_dotenv  # Para cargar las variables del archivo .env
 
-# Carga las variables de entorno desde el archivo .env
+# Cargar las variables de entorno desde el archivo .env
 # Esto debe ejecutarse al inicio para que las variables estén disponibles
 load_dotenv()
 
@@ -13,7 +13,7 @@ def get_db_connection():
     Si la conexión falla, imprime un error y devuelve None.
     """
     try:
-        # Intentamos conectar a la base de datos usando las credenciales del .env
+        # conectar a la base de datos usando las credenciales del .env
         conn = mysql.connector.connect(
             host=os.getenv("DB_HOST"),  # Obtiene el host del .env
             user=os.getenv("DB_USER"),  # Obtiene el usuario del .env
